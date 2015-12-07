@@ -1,0 +1,58 @@
+calendar/index.erb
+
+<div class="content">
+  <div class="calendar">
+    <div class="header">
+      <h1>Workout Calendar</h1>
+      <a href="#">Create a new event</a>
+    </div>
+
+    <div class="days">
+    	<div class="spacer_column"></div>
+    	<div class="day">Sun</div>
+    	<div class="day">Mon</div>
+    	<div class="day">Tues</div>
+    	<div class="day">Wed</div>
+    	<div class="day">Thurs</div>
+    	<div class="day">Fri</div>
+    	<div class="day">Sat</div>
+    </div>
+
+    <div class="hours">
+      <div class="spacer_column">
+      	<% t = DateTime.now.beginning_of_day %>
+      	<% 24.times do |i| %>
+          <div class="hour"><%= "#{(t + i.hours).strftime('%l:%M%P')}" %></div>
+      	<% end %>
+      </div>
+        
+      <% 7.times do |day_index| %>
+	      <div class="day <%= 'last' if day_index == 6 %>">
+	      	<% 24.times do |hour_index| %>
+	          <div class="hour <%= 'last' if hour_index == 23 %>">
+               <% if day_index == 2 && hour_index == 5 %>
+                 <div class="event_block">
+                   Yoga
+                   <div class="thirty"></div>
+                   <div class="thirty"></div>
+                   <div class="thirty"></div>
+                   <div class="thirty"></div>
+                 </div>
+               <% end %>
+
+               <% if day_index == 2 && hour_index == 6 %>
+                 <div class="event_block two">
+                   Run
+                   <div class="thirty"></div>
+                   <div class="thirty"></div>
+                   <div class="thirty"></div>
+                   <div class="thirty"></div>
+                 </div>
+               <% end %>
+            </div>
+	        <% end %>
+	      </div>
+	    <% end %>
+    </div>
+  </div>
+</div>
